@@ -60,16 +60,20 @@ function App() {
             <div className='location'>
               {weatherData.location.name}, {weatherData.location.country}{' '}
             </div>
-            <div className='date'>Observed At: {weatherData.current.observation_time} </div>
-            <div className='local-time'>Local Date & Time: {weatherData.location.localtime} </div>
+            <div className='date'>
+              Observed At: {weatherData.current.observation_time}{' '}
+            </div>
+            <div className='local-time'>
+              Local Date & Time: {weatherData.location.localtime}{' '}
+            </div>
           </div>
           <div className='weather-box'>
             <div className='temp'>
               {Math.round(toFahrenheit(weatherData.current.temperature))}°f
             </div>
-            <div className='icon'>
+            {/* <div className='icon'>
               {<img src= {weatherData.current.weather_icons} />}
-            </div>
+            </div> */}
             <div className='weather'>
               {weatherData.current.weather_descriptions}
             </div>
