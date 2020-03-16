@@ -80,7 +80,7 @@ function App() {
           </div>
         </>
       ) : (
-        ''
+        'please enter city name'
       )}
     </div>
   );
