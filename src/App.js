@@ -1,60 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './components/form/Form';
 import Weather from './components/weather/Weather';
 
 import './App.css';
 
 function App() {
-  const [weather, setWeather] = useState([]);
+  const [query, setQuery] = useState("Atlanta")
+  const [weather, setWeather] = useState({
+    city: null,
+    temp: null,
+    country: null,
+    descrip: null,
+    humid: null,
+  })
+  
 
-  async function fetchData(e) {
-    e.preventDefault();
-    const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
 
-    const data = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=d8aed0cdcc48eed9be637fc927e2db93`
-    )
-      .then(res => res.json())
-      .then(data => data);
-    console.log(data);
-    if (city && country) {
+
+  const data = async (s) => {
+    const apiRes = await fetch(
+      // `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=d8aed0cdcc48eed9be637fc927e2db93`
+      `https://api.openweathermap.org/data/2.5/weather?q=${s}&APPID=d8aed0cdcc48eed9be637fc927e2db93`
+    );
+    const resJSON = await apiRes.json();
+    console.log(resJSON);
+    return resJSON;
+  };
+
+const handleChange = (e) =>{
+  setQuery(e.target.value)
+}
+ 
+ const handleSearch = (e) => {
+    e.preventDefault() 
+      data(query).then(res => {
+        setWeather({
+          temp: (Math.round((res.main.temp * 9 / 5) - 459.67)),
+        humid: (res.main.humidity),
+        descrip: (res.weather[0].description),
+        country: (res.sys.country),
+        city: (res.name)
+        })    
+  });
+ }
+
+  useEffect(() => {
+    data(query).then(res => {
       setWeather({
-        temperature: Math.round((data.main.temp * 9) / 5 - 459.67),
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        error: ''
-      });
-    } else {
-      setWeather({
-        temperature: '',
-        city: '',
-        country: '',
-        humidity: '',
-        description: '',
+        temp: (Math.round((res.main.temp * 9 / 5) - 459.67)),
+        humid: (res.main.humidity),
+        descrip: (res.weather[0].description),
+        country: (res.sys.country),
+        city: (res.name)
+      }) 
+    })
+  }, [weather])
 
-        error: 'please enter city name'
-      });
-    }
-  }
 
   return (
     <div className='App'>
       <header className='App-header'>
         <h1>Weather App </h1>
       </header>
-      <Form getWeather={fetchData} />
-      {console.log(weather)}
+      <Form query={query} onChange={handleChange} onClick={handleSearch}/>
+      
       <Weather
-        temperature={weather.temperature}
+        temp={weather.temp}
         city={weather.city}
         country={weather.country}
-        humidity={weather.humidity}
-        description={weather.description}
-        error={weather.error}
-      />
+        humid={weather.humid}
+        descrip = {weather.descrip}
+      
+      /> 
     </div>
   );
 }

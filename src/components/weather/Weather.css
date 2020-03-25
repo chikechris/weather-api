@@ -1,0 +1,11 @@
+.card {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  /* background-color: rgb(20, 121, 236); */
+  padding: 15px 25px;
+  color: rgb(21, 34, 223);
+  font-size: 20px; 
+font-size: 25px; 
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

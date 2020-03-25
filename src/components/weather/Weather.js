@@ -1,17 +1,24 @@
 import React from 'react';
+import './Weather.css';
 
-const Weather = ({ city, temperature, description, country,   error }) => {
+
+
+const Weather = ({ city, temp, country, humid, descrip }) => {
   return (
-    <div>
+    <div className='card'>
       {city && country && (
         <p>
-          {city}, {''}
+          {city}
+          , {''}
           {country}
         </p>
       )}
-      {temperature && <p>Temperature:{temperature} °F</p>}
+      {temp && <p>Temperature: {temp} °F</p>}
+      {humid && <p>Humidity: {humid}</p>}
+      {descrip && <p>Description: {descrip}</p>}
+      {/* 
       {description && <p>Description: {description}</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>} */}
     </div>
   );
 };
