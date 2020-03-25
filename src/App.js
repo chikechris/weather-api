@@ -18,7 +18,8 @@ function App() {
   });
 
   // data fetching function
-  const getWeather = async s => {
+  const getWeather = async s => { 
+    setQuery('')
     setLoading(true);
     try {
       const apiRes = await fetch(

@@ -1,11 +1,18 @@
 .card {
+  width: 250px;
+  height: 250px;
+  border-style: solid;
   position: relative;
   display: inline-block;
   margin: auto;
-  /* background-color: rgb(20, 121, 236); */
+
   padding: 15px 25px;
-  color: rgb(21, 34, 223);
-  font-size: 20px; 
-font-size: 25px; 
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: black;
+  font-size: 20px;
+  font-size: 25px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* background-color: aqua;  */
+  background: linear-gradient(to top,  rgb(0, 26, 255), rgb(0, 255, 242));
+
+  outline-style: none;
 }
