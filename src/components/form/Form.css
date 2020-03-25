@@ -12,6 +12,8 @@
   background-color: rgb(21, 34, 223);
   color: white;
   outline: none;
+  font-variant: small-caps; 
+  font-size: 15px;
 }
 ::placeholder {
   color: white;
