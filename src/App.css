@@ -69,3 +69,17 @@
   color: rgb(253, 253, 249); 
   font-size: 100px ;
 }
+
+.span {
+  margin-top: 30px; 
+  font-size: 20px; 
+  font-style: italic;
+}
+
+.btrn {
+  background-color: rgb(21, 34, 223);
+  padding: 11px;
+  border-radius: 45px;
+  color: white;
+  outline: none;
+}
